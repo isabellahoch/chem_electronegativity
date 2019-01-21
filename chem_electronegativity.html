@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="the goal of this is to help me do my chem hw more efficiently :)">
+    <title>hello sir</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <style>
+    .row {
+    	margin-left:25px;
+    }
+
+    .rotateimg180 {
+	  -webkit-transform:rotate(180deg);
+	  -moz-transform: rotate(180deg);
+	  -ms-transform: rotate(180deg);
+	  -o-transform: rotate(180deg);
+	  transform: rotate(180deg);
+	  }
+	</style>
+</head>
+<body>
+	<div class="row text-center">
+		<h1>Chem Electronegativity</h1>
+	</div>
+	<div class="row">
+		<div class="col-sm">
+			<label for="element_1">Element 1:</label>
+			<input type="text" id="element_1" name="element_1">
+		</div>
+		<div class="col-sm">
+			<label for="element_1">Element 2:</label>
+			<input type="text" id="element_2" name="element_2">
+		</div>
+		<div class="col-sm">
+			<button type="submit" class="btn btn-info" id="electronegativity_go">GO</button>
+		</div>
+	</div>
+	<div class="row" id="result_div" style="display:none">
+		<p style="width:100%">The electronegativity difference is: <span id="electronegativity_result"></span></p>
+		<br>
+		<p style="width:100%">*This is a <span style="color:red" id="bond_type"></span> bond!</p>
+		<div class="row" id="dipole_graphics" style="display:none">
+			<span id="el_1" style="padding:25px">N</span>
+			<img style="height:75px" id="dipole_img" src="http://www.chem.ucla.edu/~harding/IGOC/D/dipole_moment01.png">
+			<span id="el_2" style="padding:25px">O</span>
+		</div>
+	</div>
+	<hr>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    	electronegativity = {
+			"H":2.1,
+			"He":"N/A",
+			"Li":1,
+			"Be":1.6,
+			"B":2.0,
+			"C":2.5,
+			"N":3.0,
+			"O":3.5,
+			"F":4,
+			"Ne":"N/A",
+			"Na":0.9,
+			"Mg":1.3,
+			"Al":1.6,
+			"Si":1.9,
+			"F":2.2,
+			"S":2.5,
+			"Cl":3,
+			"Ar":"N/A",
+			"K":0.8,
+			"Ca":1.3,
+			"Sc":1.4,
+			"Ti":1.5,
+			"V":1.6,
+			"Cr":1.7,
+			"Mn":1.6,
+			"Fe":1.8,
+			"Co":1.9,
+			"Ni":1.9,
+			"Cu":1.9,
+			"Zn":1.7,
+			"Ga":1.6,
+			"Ge":2,
+			"As":2.2,
+			"Se":2.6,
+			"Br":2.8,
+			"Kr":"N/A",
+			"Rb":0.8,
+			"Sr":1,
+			"Y":1.2,
+			"Zr":1.3,
+			"Nb":1.6,
+			"Mo":2.2,
+			"Tc":2.1,
+			"Ru":2.2,
+			"Rh":2.3,
+			"Ld":2.2,
+			"Ag":1.9,
+			"Cd":1.7,
+			"In":1.8,
+			"Sn":2,
+			"Sb":2.1,
+			"Te":2.1,
+			"I":2.7,
+			"Xe":2.6,
+			"Cs":0.8,
+			"Ba":0.9,
+			"La":1.1,
+			"Hf":1.3,
+			"Ta":1.5,
+			"W":1.7,
+			"Re":1.9,
+			"Os":2.2,
+			"Ir":2.2,
+			"Pt":2.2,
+			"Au":2.4,
+			"Hg":1.9,
+			"Ti":2.0,
+			"Pb":2.3,
+			"Bi":2,
+			"Po":2,
+			"At":2.2,
+			"Rn":"N/A",
+			"Fr":0.7,
+			"Ra":0.9,
+			"Ac":1.1,
+			"Rf":"N/A",
+			"Db":"N/A",
+			"Sg":"N/A",
+			"Bh":"N/A",
+			"Hs":"N/A",
+			"Mt":"N/A",
+			"Ds":"N/A",
+			"Rg":"N/A",
+			"Cn":"N/A",
+			"Nh":"N/A",
+			"Fl":"N/A",
+			"Mc":"N/A",
+			"Lv":"N/A",
+			"Ts":"N/A",
+			"Og":"N/A"
+		}
+
+		console.log(electronegativity["Ga"])
+	</script>
+	<script>
+		$(document).ready(function(){
+			$("#electronegativity_go").click(function(){
+				x = $("#element_1").val()
+				y = $("#element_2").val()
+
+				console.log(element_1)
+				console.log(element_2)
+				element_1 = electronegativity[x]
+				element_2 = electronegativity[y]
+
+				$("#el_1").text(x+" ("+element_1+")")
+				$("#el_2").text(y+" ("+element_2+")")
+
+
+				the_difference = Math.abs(element_1-element_2);
+				console.log(the_difference)
+
+
+				if (the_difference <= 0.4) {
+					type="nonpolar covalent"
+				}
+				else if (the_difference <= 2) {
+					type = "polar covalent"
+				}
+				else if (the_difference > 2) {
+					type = "ionic"
+				}
+
+				$("#bond_type").text(type);
+
+				$("#electronegativity_result").text(the_difference);
+
+				if (the_difference > 0.4) {
+					if (element_1 < element_2) {
+						$( "#dipole_img" ).addClass( "rotateimg180" );
+					}
+					$( "#dipole_graphics" ).show()
+				}
+
+
+				$("#result_div").show()
+			});
+		});
+	</script>
+</body>
+</html>
