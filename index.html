@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="the goal of this is to help me do my chem hw more efficiently :)">
-    <title>hello sir</title>
+    <title>electronegativity calculator yeet :)</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <style>
@@ -23,7 +23,7 @@
 </head>
 <body>
 	<div class="row text-center">
-		<h1>Chem Electronegativity</h1>
+		<h1>Chem Electronegativity Calculator</h1>
 	</div>
 	<div class="row">
 		<div class="col-sm">
@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div class="row" id="result_div" style="display:none">
-		<p style="width:100%">The electronegativity difference is: <span id="electronegativity_result"></span></p>
+		<p style="width:100%">The electronegativity difference between <span id="1_el"></span> and <span id="2_el"></span> is: <span id="electronegativity_result"></span></p>
 		<br>
 		<p style="width:100%">*This is a <span style="color:red" id="bond_type"></span> bond!</p>
 		<div class="row" id="dipole_graphics" style="display:none">
@@ -161,6 +161,9 @@
 
 				$("#el_1").text(x+" ("+element_1+")")
 				$("#el_2").text(y+" ("+element_2+")")
+
+				$("#1_el").text(x+" ("+element_1+")")
+				$("#2_el").text(y+" ("+element_2+")")
 
 
 				the_difference = Math.abs(element_1-element_2);
